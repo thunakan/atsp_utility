@@ -1,0 +1,129 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width" />
+  <title>@tsp utility</title>
+</head>
+<body>
+  <div id="title">
+    <h1></h1>
+  </div>
+  <div id="sidebar">
+  
+  <h1>@tsp utility</h1>
+  
+    <div id="tab-container">
+       
+        <div class="tab active" data-content="texts-settings">Each User Settings</div>
+		<div class="tab" data-content="settings">General Settings</div>
+		<div class="tab" data-content="export">Export</div>
+		<div class="tab" data-content="import">Import</div>
+    </div>
+  </div>
+
+  <div id="content">
+
+
+    <div id="texts-settings" class="tab-content show">
+      <h2> Each User Settings</h2>
+        <div id="texts-sidebar">
+				<div id="texts-toolbar">
+	          <div id="texts-toolbar-actions">
+					<input id="texts-toolbar-text-add" type="button" value="+"/>	
+					<div id="texts-toolbar-move">
+						<input id="texts-toolbar-move-up" class="hidden" type="button" value="↑"/>
+						<input id="texts-toolbar-move-down" class="hidden" type="button" value="↓"/>
+            	        <input id="texts-toolbar-show-contents" class="hidden" type="button" value="表"/>
+            	        <button id="texts-button-delete">del</button>
+					</div>
+				  </div>
+				</div>
+
+           <ol id="texts-tree"></ol>
+        </div>
+	<div id="texts-content">
+		<div id="texts-name-container">
+			<div id="texts-name-container">
+				<label>user name</label>
+				<input id="texts-name" class="text" type="text"/>
+			</div>
+			<div id="texts-text-container">
+				<label>memo</label>
+				<textarea id="texts-text"> </textarea>
+			</div>
+			<div id="texts-button-container">
+				<button id="texts-button-save" class="hidden">save</button>
+				<button id="texts-button-clear" class="hidden">clear</button>
+				<button id="texts-button-load" class="hidden">load</button>
+				<button id="texts-button-update">update</button>
+			</div>
+
+		</div>
+
+		</div>
+		<div id="save-string" class="hidden">
+			<div id="save-string-container">
+				<input id="save-string-text" class="text" type="text"/>
+				<button id="to-string-button"> toStr </button>
+
+				<input id="save-string-json" class="text" type="text"/>
+				<button id="save-json-button"> toJSON </button>
+			</div>
+		</div>
+
+    </div>
+
+
+		
+		<div id="settings" class="tab-content">
+			
+			<h2>General Settings</h2>
+			
+			<div class="setting">
+				<label>Default Text </label>
+				<input id="setting-defaultText" class="text" type="text"/>
+				<div id="save-setting-button-Container">
+				<button id="save-setting-button"> save </button>
+			</div>
+
+			</div>
+			
+		</div>
+
+		<div id="export" class="tab-content">
+			
+			<h2>Export</h2>
+			
+			<div class="export settings">
+				<div id="export-setting-button-Container">
+				<button id="export-setting-button"> Export </button>
+				<div id="export-contents-container">
+				<textarea id="export-contents"></textarea>
+				</div>
+			</div>
+
+			</div>
+			
+		</div>
+		
+		<div id="import" class="tab-content">
+			
+			<h2>Import</h2>
+			<div id="import-button-container">
+				<button id="import-button">Import</button>			
+				</span>			
+			</div>
+			<div id="import-contents-container">
+				<textarea id="import-contents"></textarea>
+			</div>
+			
+			
+		</div>
+
+
+  </div>
+  <script src="../scripts/jquery.min.js"></script>
+  <script src="../scripts/script.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+</body>
+</html>

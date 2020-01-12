@@ -1,0 +1,45 @@
+{
+  "name": "atsp_utility",
+  "short_name": "atsp_util",
+  "version": "1.0.1",
+  "manifest_version": 2,
+  "description": "ERPパッケージ製品サポートサイト @support にてサポート対応者の利用を想定した便利機能です。",
+  "icons": {
+    "16": "images/icon-16.png",
+    "48": "images/icon-48.png",
+    "128": "images/icon-128.png"
+  },
+  "options_ui": {
+        "page": "options/options.html"
+       ,"open_in_tab": true
+  },
+  "permissions": [
+    "storage"
+  ],
+  "background": {
+    "scripts": ["scripts/background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://support.worksap.co.jp/collaboInsMessage.do*"
+      ],
+      "js": [
+        "scripts/contentscript.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": false
+    },
+    {
+      "matches": [
+        "https://support.worksap.com/collaboInsMessage.do*"
+      ],
+      "js": [
+        "scripts/contentscript.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": false
+    }
+
+  ]
+}
