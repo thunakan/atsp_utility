@@ -48,11 +48,16 @@ function getUserRules(userName, jsonObj){
     let ret="";
     for (var i = 0; i < jsonObj.length; i += 1) {
         if (jsonObj[i].name == userName){
-            ret = '<div id="userrules"; style="background-color:lightyellow; padding: 10px;">'+jsonObj[i].text+'</div>';
+        	let linefeededStr = getLineFeededStr(jsonObj[i].text);
+            ret = '<div id="userrules"; style="background-color:lightyellow; padding: 10px;">'+linefeededStr+'</div>';
         };
     }
     return ret;
 };
+
+function getLineFeededStr(aText) {
+    return aText.replace(/\r?\n/g, '<br>');
+}
 
 //ここからテスト
 var pageTableHeadDash = document.getElementsByClassName('pageTableHeadDash');
