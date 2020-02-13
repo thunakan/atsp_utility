@@ -70,15 +70,39 @@ var userName = userNameAndBBSName[0].innerText.split(' / ')[0].trim();
 //var information=getUserRules(userName);
 
 chrome.runtime.sendMessage({method: 'getItem', key: 'texts'}, function (response) {
+  let information
   if (response.data) {
-    let information=getUserRules(userName,response.data);
+    information=getUserRules(userName,response.data);
     console.log(information);
     headdivs[0].innerHTML=information+headdivs[0].innerHTML;
 
 	foottds = pageTableHeadDash[2].getElementsByClassName('btn');
 
-	foottds[0].outerHTML=foottds[0].outerHTML+information;
+    foottds[0].outerHTML=foottds[0].outerHTML+information;
+
+    var getAdditionalStr =  function () {
+        const xhr = new XMLHttpRequest();
+        let arg = userName;
+        xhr.open('GET', 'http://127.0.0.1:5000/ajax_test?'+ 'arg=' + userName, true);
+        xhr.send();
+
+        xhr.onreadystatechange = () => {
+          if(xhr.readyState === 4 && xhr.status === 200) {
+
+            console.log( JSON.parse(xhr.responseText) );
+            foottds = pageTableHeadDash[2].getElementsByClassName('btn');
+            foottds[0].outerHTML=foottds[0].outerHTML+'<div id="redmineStr"; style="background-color:lightyellow; padding: 10px;">'+getLineFeededStr(unescapeUnicode(JSON.parse(xhr.responseText)))+'</div>';
+          }
+        }
+    }
+	getAdditionalStr();
   }
+
 });
 
 
+var unescapeUnicode = function(str) {
+  return str.replace(/\\u([a-fA-F0-9]{4})/g, function(m0, m1) {
+    return String.fromCharCode(parseInt(m1, 16));
+  });
+};
