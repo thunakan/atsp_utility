@@ -71,6 +71,7 @@ var userName = userNameAndBBSName[0].innerText.split(' / ')[0].trim();
 
 chrome.runtime.sendMessage({method: 'getItem', key: 'texts'}, function (response) {
   let information
+  let dispDivs = '<div id="userinfo"> </div> <div id="redmineinfo"> </div>'
   if (response.data) {
     information=getUserRules(userName,response.data);
     console.log(information);
@@ -78,7 +79,12 @@ chrome.runtime.sendMessage({method: 'getItem', key: 'texts'}, function (response
 
 	foottds = pageTableHeadDash[2].getElementsByClassName('btn');
 
-    foottds[0].outerHTML=foottds[0].outerHTML+information;
+    foottds[0].outerHTML=foottds[0].outerHTML+dispDivs;
+
+	userinfo = pageTableHeadDash[2].getElementsByClassName('userinfo');
+
+    userinfo.outerHTML=userinfo.outerHTML+information;
+    
 
     var getAdditionalStr =  function () {
         const xhr = new XMLHttpRequest();
@@ -90,8 +96,8 @@ chrome.runtime.sendMessage({method: 'getItem', key: 'texts'}, function (response
           if(xhr.readyState === 4 && xhr.status === 200) {
 
             console.log( JSON.parse(xhr.responseText) );
-            foottds = pageTableHeadDash[2].getElementsByClassName('btn');
-            foottds[0].outerHTML=foottds[0].outerHTML+'<div id="redmineStr"; style="background-color:lightyellow; padding: 10px;">'+getLineFeededStr(unescapeUnicode(JSON.parse(xhr.responseText)))+'</div>';
+            redmineinfo = pageTableHeadDash[2].getElementsByClassName('redmineinfo');
+            redmineinfo.outerHTML=redmineinfo.outerHTML+'<div id="redmineStr"; style="background-color:lightyellow; padding: 10px;">'+getLineFeededStr(unescapeUnicode(JSON.parse(xhr.responseText)))+'</div>';
           }
         }
     }
