@@ -77,11 +77,11 @@ chrome.runtime.sendMessage({method: 'getItem', key: 'texts'}, function (response
     console.log(information);
     headdivs[0].innerHTML=information+headdivs[0].innerHTML;
 
-	foottds = pageTableHeadDash[2].getElementsByClassName('btn');
+    foottds = pageTableHeadDash[2].getElementsByClassName('btn');
 
     foottds[0].outerHTML=foottds[0].outerHTML+dispDivs;
 
-	userinfo = pageTableHeadDash[2].getElementsByClassName('userinfo');
+    userinfo = document.getElementById('userinfo');
 
     userinfo.outerHTML=userinfo.outerHTML+information;
     
@@ -96,7 +96,7 @@ chrome.runtime.sendMessage({method: 'getItem', key: 'texts'}, function (response
           if(xhr.readyState === 4 && xhr.status === 200) {
 
             console.log( JSON.parse(xhr.responseText) );
-            redmineinfo = pageTableHeadDash[2].getElementsByClassName('redmineinfo');
+            redmineinfo = document.getElementById('redmineinfo');
             redmineinfo.outerHTML=redmineinfo.outerHTML+'<div id="redmineStr"; style="background-color:lightyellow; padding: 10px;">'+getLineFeededStr(unescapeUnicode(JSON.parse(xhr.responseText)))+'</div>';
           }
         }
