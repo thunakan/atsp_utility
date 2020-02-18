@@ -89,7 +89,7 @@ chrome.runtime.sendMessage({method: 'getItem', key: 'texts'}, function (response
     var getAdditionalStr =  function () {
         const xhr = new XMLHttpRequest();
         let arg = userName;
-        xhr.open('GET', 'http://127.0.0.1:5000/ajax_test?'+ 'arg=' + userName, true);
+        xhr.open('GET', 'http://127.0.0.1:5000/getredmine?'+ 'arg=' + userName, true);
         xhr.send();
 
         xhr.onreadystatechange = () => {
