@@ -65,7 +65,13 @@ var TextStore = {
 		localStorage.texts = JSON.stringify(this.texts);
 	},
 	nextId : function () {
-		return localStorage.textId++;
+		if (typeof localStorage['textId'] === 'undefined') {
+			localStorage['textId']  = 0;
+	    }
+		return ++localStorage.textId;
+	},
+	initializeId : function () {
+		localStorage['textId']  = 0;
 	},
 	getDefaultText : function (type) {
 		return {
@@ -467,6 +473,7 @@ settings();
 				}
 			}
 			var texts = JSON.parse(contents);
+			TextStore.initializeId();
 			reassignIds(texts);
 			if (type == 'Overwrite') {
 				TextStore.setTexts(texts);
