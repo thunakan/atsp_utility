@@ -69,6 +69,7 @@ var userName = userNameAndBBSName[0].innerText.split(' / ')[0].trim();
 //ここにinformationの内容を取得する
 //var information=getUserRules(userName);
 
+
 chrome.runtime.sendMessage({method: 'getItem', key: 'texts'}, function (response) {
   let information
   let dispDivs = '<div id="userinfo"> </div> <div id="redmineinfo"> </div>'
@@ -85,11 +86,18 @@ chrome.runtime.sendMessage({method: 'getItem', key: 'texts'}, function (response
 
     userinfo.outerHTML=userinfo.outerHTML+information;
     
+    //ここは仕様が変わったら使えなくなるかも
+    var scr=document.getElementsByTagName('script');
+    var scrinner=scr[28].innerText;
+    var baseDocIdContainStr=scrinner.substr(scrinner.indexOf("$('titleinc').checked = true;"),scrinner.indexOf('var t= new Topic2();')-scrinner.indexOf("$('titleinc').checked = true;"));
+    var docIdStr=baseDocIdContainStr.substr(baseDocIdContainStr.indexOf("postBody: 'docId="),baseDocIdContainStr.indexOf('onSuccess: function (transport)')-baseDocIdContainStr.indexOf("postBody: 'docId="));
+    var baseDocId=docIdStr.substr(docIdStr.indexOf('=')+1,docIdStr.indexOf("',")-docIdStr.indexOf('=')-1);
 
     var getAdditionalStr =  function () {
         const xhr = new XMLHttpRequest();
-        let arg = userName;
-        xhr.open('GET', 'http://127.0.0.1:5000/getredmine?'+ 'arg=' + userName, true);
+
+        let arg = {'userName' : userName , 'baseDocId' : baseDocId} ;
+        xhr.open('GET', 'http://127.0.0.1:5000/getredmine?'+ 'arg=' + JSON.stringify(arg), true);
         xhr.send();
 
         xhr.onreadystatechange = () => {
