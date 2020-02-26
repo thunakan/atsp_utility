@@ -85,7 +85,7 @@ chrome.runtime.sendMessage({method: 'getItem', key: 'texts'}, function (response
     userinfo = document.getElementById('userinfo');
 
     userinfo.outerHTML=userinfo.outerHTML+information;
-    
+  }
     //ここは仕様が変わったら使えなくなるかも
     var scr=document.getElementsByTagName('script');
     var scrinner=scr[28].innerText;
@@ -94,24 +94,22 @@ chrome.runtime.sendMessage({method: 'getItem', key: 'texts'}, function (response
     var baseDocId=docIdStr.substr(docIdStr.indexOf('=')+1,docIdStr.indexOf("',")-docIdStr.indexOf('=')-1);
 
     var getAdditionalStr =  function () {
-        const xhr = new XMLHttpRequest();
+      const xhr = new XMLHttpRequest();
 
-        let arg = {'userName' : userName , 'baseDocId' : baseDocId} ;
-        xhr.open('GET', 'http://127.0.0.1:5000/getredmine?'+ 'arg=' + JSON.stringify(arg), true);
-        xhr.send();
+      let arg = {'userName' : userName , 'baseDocId' : baseDocId} ;
+      xhr.open('GET', 'http://127.0.0.1:5000/getredmine?'+ 'arg=' + JSON.stringify(arg), true);
+      xhr.send();
 
-        xhr.onreadystatechange = () => {
-          if(xhr.readyState === 4 && xhr.status === 200) {
+      xhr.onreadystatechange = () => {
+        if(xhr.readyState === 4 && xhr.status === 200) {
 
-            console.log( JSON.parse(xhr.responseText) );
-            redmineinfo = document.getElementById('redmineinfo');
-            redmineinfo.outerHTML=redmineinfo.outerHTML+getLineFeededStr(unescapeUnicode(JSON.parse(xhr.responseText)));
-          }
+          console.log( JSON.parse(xhr.responseText) );
+          redmineinfo = document.getElementById('redmineinfo');
+          redmineinfo.outerHTML=redmineinfo.outerHTML+getLineFeededStr(unescapeUnicode(JSON.parse(xhr.responseText)));
         }
+      }
     }
 	getAdditionalStr();
-  }
-
 });
 
 
