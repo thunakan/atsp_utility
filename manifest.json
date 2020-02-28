@@ -22,17 +22,7 @@
   "content_scripts": [
     {
       "matches": [
-        "https://support.worksap.co.jp/collaboInsMessage.do*"
-      ],
-      "js": [
-        "scripts/contentscript.js"
-      ],
-      "run_at": "document_end",
-      "all_frames": false
-    },
-    {
-      "matches": [
-        "https://support.worksap.com/collaboInsMessage.do*"
+        "https://support.worksap.co.jp/collaboInsMessage.do*","https://support.worksap.com/collaboInsMessage.do*"
       ],
       "js": [
         "scripts/contentscript.js"
@@ -40,6 +30,5 @@
       "run_at": "document_end",
       "all_frames": false
     }
-
   ]
 }
