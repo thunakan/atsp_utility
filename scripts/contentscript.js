@@ -105,6 +105,11 @@ chrome.runtime.sendMessage({method: 'getItem', key: 'texts'}, function (response
 
           console.log( JSON.parse(xhr.responseText) );
           redmineinfo = document.getElementById('redmineinfo');
+          if (redmineinfo === null) {
+              foottds = pageTableHeadDash[2].getElementsByClassName('btn');
+              foottds[0].outerHTML=foottds[0].outerHTML+dispDivs;
+              redmineinfo = document.getElementById('redmineinfo');
+          }
           redmineinfo.outerHTML=redmineinfo.outerHTML+getLineFeededStr(unescapeUnicode(JSON.parse(xhr.responseText)));
         }
       }
