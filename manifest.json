@@ -1,7 +1,7 @@
 {
   "name": "atsp_utility",
   "short_name": "atsp_util",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "manifest_version": 2,
   "description": "ERPパッケージ製品サポートサイト @support にてサポート対応者の利用を想定した便利機能です。",
   "icons": {
