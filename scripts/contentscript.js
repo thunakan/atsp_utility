@@ -13,7 +13,7 @@ var event = function(){
 document.getElementsByName("feelingKb")[0].addEventListener("change", event);
 var btns = document.getElementsByClassName("btn");//
 for (var i = 0 ; i < btns.length ; i++){
-  if (btns[i].value = "　次へ　"){
+  if (btns[i].value === "　次へ　"){
     btns[i].addEventListener("click", event);
   };
 };
