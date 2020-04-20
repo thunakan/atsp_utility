@@ -2,6 +2,7 @@ var event = function(){
     var textcontent = document.getElementById("contents");
     textcontent.select();
     document.execCommand('copy');
+    checkExistsPriorityForCTU();
     //alert("本文を念のためコピペしました");
     var flgReview = containsStr(textcontent.value,'レビュー');
     var flgCollaboDtl = containsStr(textcontent.value,'collaboDetail');
@@ -10,7 +11,12 @@ var event = function(){
 
 };
 document.getElementsByName("feelingKb")[0].addEventListener("change", event);
-document.getElementsByClassName("btn")[3].addEventListener("click", event);
+var btns = document.getElementsByClassName("btn");//
+for (var i = 0 ; i < btns.length ; i++){
+  if (btns[i].value = "　次へ　"){
+    btns[i].addEventListener("click", event);
+  };
+};
 
 function containsStr(str,chkStr){
     return str.indexOf(chkStr) !== -1;
@@ -122,4 +128,13 @@ var unescapeUnicode = function(str) {
   return str.replace(/\\u([a-fA-F0-9]{4})/g, function(m0, m1) {
     return String.fromCharCode(parseInt(m1, 16));
   });
+};
+
+function checkExistsPriorityForCTU(){
+  var title = document.getElementById('title');
+  if (title.value.startsWith('【CTU各位】')){
+    if (title.value.indexOf('重要度') === -1) {
+      alert("※注意！！　CTU依頼なのにに重要度が指定されていません！！");
+    };
+  };
 };
